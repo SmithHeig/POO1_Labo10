@@ -8,13 +8,32 @@
  *
  * @author James
  */
-public class Disque {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class Disque {
+    private Point center;
+    private double r;
+
+    public Disque(int x, int y, double r) {
+        Point center = new Point(x,y);
+        this.r = r;
     }
     
+    double getR(){
+        return r;
+    }
+    
+    Point getCenter(){
+        return center;
+    }
+    
+    void setR(double r){
+        this.r = r;
+    }
+    
+    void setCenter(Point center){
+        this.center = center;
+    }
 }
