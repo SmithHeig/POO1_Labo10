@@ -17,7 +17,7 @@ public class Disque {
     private double r;
 
     public Disque(int x, int y, double r) {
-        Point center = new Point(x,y);
+        center = new Point(x,y);
         this.r = r;
     }
     
@@ -35,5 +35,9 @@ public class Disque {
     
     void setCenter(Point center){
         this.center = center;
+    }
+    
+    String ToString(){
+        return "Disque : c = (" + center.x + ","+ center.y + ") , r = "+ r;
     }
 }

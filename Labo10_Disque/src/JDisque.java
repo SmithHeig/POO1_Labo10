@@ -26,7 +26,9 @@ public class JDisque extends JPanel implements MouseListener, MouseMotionListene
     }**/
 
     JDisque() {
-        setBackground(Color.WHITE);
+        this.setBackground(Color.white);
+        addMouseListener(this);
+        addMouseMotionListener(this);
     }
 
     public Dimension getPreferredSize() {
@@ -34,7 +36,7 @@ public class JDisque extends JPanel implements MouseListener, MouseMotionListene
     }
 
     public void actionPerformed(ActionEvent e) {
-
+        
     }
 
     public void run() {
@@ -45,12 +47,13 @@ public class JDisque extends JPanel implements MouseListener, MouseMotionListene
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        Graphics2D g2D = (Graphics2D) g;
-
+        int i = 0;
         for(Object o : disques){
-            System.out.println("disque");
-            Disque d = (Disque) o;
-            g2D.fillOval(d.getCenter().x, d.getCenter().y, (int)d.getR(), (int)d.getR());
+            
+            g.setColor(colors[i % colors.length]);
+            Disque d = (Disque)o;
+            g.fillOval(d.getCenter().x - (int)(d.getR()/2), d.getCenter().y - (int)(d.getR()/2), (int)d.getR(), (int)d.getR());
+            i++;
         }
           
     }
@@ -62,28 +65,30 @@ public class JDisque extends JPanel implements MouseListener, MouseMotionListene
     public void	mousePressed(MouseEvent e){
         
         currentDisque = new Disque(e.getX(),e.getY(),0);
+        System.out.print("Press :" + currentDisque);
         disques.add(currentDisque);
-        this.update(this.getGraphics());
+        this.repaint();
     }
     
     public void	mouseReleased(MouseEvent e){
         
-        this.update(this.getGraphics());
+        System.out.print("Release :" + currentDisque);
     }
     
     public void mouseDragged(MouseEvent e){
-        currentDisque = (Disque)disques.getFirst();
-        Point centerPos = currentDisque.getCenter();
-        Point mousePos = new Point(e.getX(), e.getY());
-        double r = centerPos.distance(mousePos);
-        currentDisque.setR(r);
-        this.update(this.getGraphics());
+        
+        double r = currentDisque.getCenter().distance(e.getPoint());
+        
+        System.out.print("Drag :" + currentDisque);
+        
+        currentDisque.setR(2*r);
+        this.repaint();
     }
     
     public void mouseEntered(MouseEvent e){}
     
     public void mouseClicked(MouseEvent e){}
     
-    public void mouseMoved(MouseEvent e) {}
+    public void mouseMoved(MouseEvent e) { }
 
 }

@@ -17,13 +17,11 @@ import java.awt.event.*;
 public class GUI {
     public GUI(){
         final JDisque disque = new JDisque();
-        ClickArea clickArea = new ClickArea(Color.white);
         
         JFrame frame = new JFrame("Disque");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.getContentPane().add(disque, BorderLayout.CENTER);
-        frame.addMouseListener(disque);
 
         JPanel south = new JPanel();
         south.setLayout(new GridLayout(0, 1));
